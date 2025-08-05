@@ -32,44 +32,6 @@ builds:
       - -X main.date={{.Date}}
     mod_timestamp: '{{ .CommitTimestamp }}'
 
-  - id: streaming-example
-    main: ./examples/streaming
-    binary: streaming-example
-    env:
-      - CGO_ENABLED=0
-    goos:
-      - linux
-      - windows
-      - darwin
-    goarch:
-      - amd64
-      - arm64
-    ldflags:
-      - -s -w
-      - -X main.version={{.Version}}
-      - -X main.commit={{.Commit}}
-      - -X main.date={{.Date}}
-    mod_timestamp: '{{ .CommitTimestamp }}'
-
-  - id: tool-calling-example
-    main: ./examples/tool_calling
-    binary: tool-calling-example
-    env:
-      - CGO_ENABLED=0
-    goos:
-      - linux
-      - windows
-      - darwin
-    goarch:
-      - amd64
-      - arm64
-    ldflags:
-      - -s -w
-      - -X main.version={{.Version}}
-      - -X main.commit={{.Commit}}
-      - -X main.date={{.Date}}
-    mod_timestamp: '{{ .CommitTimestamp }}'
-
 archives:
   - id: examples
     formats: ['tar.gz']

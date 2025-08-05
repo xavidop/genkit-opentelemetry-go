@@ -78,12 +78,9 @@ jobs:
     - name: Build examples
       run: |
         cd examples/basic && go build -v .
-        cd ../advanced_schemas && go build -v .
-        cd ../embeddings && go build -v .
-        cd ../image_generation && go build -v .
-        cd ../multimodal && go build -v .
-        cd ../streaming && go build -v .
-        cd ../tool_calling && go build -v .
+        cd ../otel && go build -v .
+        cd ../prometheus && go build -v .
+        cd ../jaeger && go build -v .
 
   goreleaser-check:
     name: GoReleaser Check

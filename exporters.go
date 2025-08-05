@@ -258,7 +258,12 @@ func (ot *OpenTelemetry) setupPrometheusMetrics(ctx context.Context) error {
 				// Context cancelled, initiate shutdown
 				shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 				defer cancel()
-				ot.server.Shutdown(shutdownCtx)
+				err := ot.server.Shutdown(shutdownCtx)
+				if err != nil {
+					slog.Error("Error shutting down Prometheus metrics server", "error", err)
+				} else {
+					slog.Info("Prometheus metrics server shut down successfully")
+				}
 			}()
 
 			// Start serving

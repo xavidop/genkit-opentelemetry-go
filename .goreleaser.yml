@@ -1,0 +1,183 @@
+# GoReleaser configuration for OpenTelemetry Plugin for Genkit Go
+# https://goreleaser.com
+
+version: 2
+
+before:
+  hooks:
+    # Clean up any previous builds
+    - go mod tidy
+    # Run tests before building
+    - go test ./...
+
+builds:
+  # This is a library/plugin, so we don't need to build binaries
+  # But we can build the examples for demonstration
+  - id: basic-example
+    main: ./examples/basic
+    binary: basic-example
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+    mod_timestamp: '{{ .CommitTimestamp }}'
+
+  - id: streaming-example
+    main: ./examples/streaming
+    binary: streaming-example
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+    mod_timestamp: '{{ .CommitTimestamp }}'
+
+  - id: tool-calling-example
+    main: ./examples/tool_calling
+    binary: tool-calling-example
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+    mod_timestamp: '{{ .CommitTimestamp }}'
+
+archives:
+  - id: examples
+    formats: ['tar.gz']
+    name_template: >-
+      {{ .ProjectName }}-examples_
+      {{- .Version }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    format_overrides:
+      - goos: windows
+        formats: ['zip']
+    files:
+      - README.md
+      - LICENSE
+      - examples/**/*
+
+changelog:
+  use: github
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^ci:'
+      - '^chore:'
+      - '^style:'
+      - '^refactor:'
+      - Merge pull request
+      - Merge branch
+      - go mod tidy
+      - 'chore(release):'
+  groups:
+    - title: '🚀 Features'
+      regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
+      order: 0
+    - title: '🐛 Bug fixes'
+      regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
+      order: 1
+    - title: '⚡ Performance improvements'
+      regexp: '^.*?perf(\([[:word:]]+\))??!?:.+$'
+      order: 2
+    - title: '📚 Documentation updates'
+      regexp: '^.*?docs(\([[:word:]]+\))??!?:.+$'
+      order: 3
+    - title: '🛠 Build System'
+      regexp: '^.*?build(\([[:word:]]+\))??!?:.+$'
+      order: 4
+    - title: '⚙️ Continuous Integration'
+      regexp: '^.*?ci(\([[:word:]]+\))??!?:.+$'
+      order: 5
+    - title: Others
+      order: 999
+
+release:
+  github:
+    owner: xavidop
+    name: genkit-opentelemetry-go
+  name_template: "{{.ProjectName}} v{{.Version}}"
+  header: |
+    ## OpenTelemetry Plugin for Genkit Go {{.Version}}
+
+    This release includes improvements to the OpenTelemetry integration for Firebase Genkit Go.
+    
+    **🤖 This release was automatically generated using semantic-release**
+    
+    ### Installation
+    
+    ```bash
+    go get github.com/xavidop/genkit-opentelemetry-go@{{.Tag}}
+    ```
+    
+    ### What's Changed
+  footer: |
+    **Full Changelog**: https://github.com/xavidop/genkit-opentelemetry-go/compare/{{ .PreviousTag }}...{{ .Tag }}
+
+    ## Documentation
+
+    - [README](https://github.com/xavidop/genkit-opentelemetry-go/blob/{{.Tag}}/README.md)
+    - [Examples](https://github.com/xavidop/genkit-opentelemetry-go/tree/{{.Tag}}/examples)
+    - [OpenTelemetry Documentation](https://opentelemetry.io/docs/)
+  draft: false
+  prerelease: auto
+  mode: replace
+
+# Don't create source code archives since this is a Go module
+source:
+  enabled: false
+
+# Disable Docker builds (not needed for a library)
+dockers:
+  - skip_push: true
+
+# Checksums for the archives
+checksum:
+  name_template: 'checksums.txt'
+  algorithm: sha256
+
+# Snapshots (for non-tagged builds)
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+# Metadata for the release
+metadata:
+  mod_timestamp: '{{ .CommitTimestamp }}'
+
+# Announcement configuration (optional)
+announce:
+  skip: true

@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/firebase/genkit/go/genkit"
-	opentelemetry "github.com/xavierportillaedo/genkit-opentelemetry-go"
+	opentelemetry "github.com/xavidop/genkit-opentelemetry-go"
 )
 
 func main() {

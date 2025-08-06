@@ -13,7 +13,7 @@ A comprehensive OpenTelemetry plugin for [Firebase Genkit Go](https://genkit.dev
 ## Installation
 
 ```bash
-go get github.com/xavierportillaedo/genkit-opentelemetry-go
+go get github.com/xavidop/genkit-opentelemetry-go
 ```
 
 ## Quick Start
@@ -30,7 +30,7 @@ import (
     "log"
 
     "github.com/firebase/genkit/go/genkit"
-    opentelemetry "github.com/xavierportillaedo/genkit-opentelemetry-go"
+    opentelemetry "github.com/xavidop/genkit-opentelemetry-go"
 )
 
 func main() {
@@ -162,7 +162,7 @@ otelPlugin := opentelemetry.New(opentelemetry.Config{
 
 ```bash
 # Clone the repository
-git clone https://github.com/xavierportillaedo/genkit-opentelemetry-go
+git clone https://github.com/xavidop/genkit-opentelemetry-go
 cd genkit-opentelemetry-go
 
 # Start Jaeger, Prometheus, and Grafana

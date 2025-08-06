@@ -1,4 +1,4 @@
-module github.com/xavierportillaedo/genkit-opentelemetry-go
+module github.com/xavidop/genkit-opentelemetry-go
 
 go 1.24.1
 

@@ -37,6 +37,9 @@ import (
 )
 
 // Config configures the OpenTelemetry plugin.
+
+const providerID = "opentelemetry"
+
 type Config struct {
 	// Export even in the dev environment.
 	ForceExport bool
@@ -118,6 +121,11 @@ type OpenTelemetry struct {
 	serverCancel context.CancelFunc
 	serverWg     *sync.WaitGroup
 	shutdownOnce sync.Once
+}
+
+// Name implements genkit.Plugin.
+func (ot *OpenTelemetry) Name() string {
+	return providerID
 }
 
 // GetConfig returns the current configuration (mainly for testing purposes).

@@ -36,18 +36,17 @@ import (
 func main() {
     ctx := context.Background()
 
-    // Initialize Genkit
-    genkit.Init(ctx)
-
     // Initialize OpenTelemetry plugin with default settings
     plugin := opentelemetry.New(opentelemetry.Config{
         ServiceName: "my-genkit-app",
         ForceExport: true, // Export even in development
     })
 
-    if err := plugin.Init(ctx); err != nil {
-        log.Fatal(err)
-    }
+    // Initialize Genkit
+    genkit.Init(ctx,
+        genkit.WithPlugins(plugin),
+    )
+
 
     // Your Genkit flows will now automatically emit telemetry!
 }

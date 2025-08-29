@@ -18,9 +18,6 @@ func main() {
 }
 
 func prometheusExample(ctx context.Context) {
-	// Initialize Genkit
-	genkit.Init(ctx)
-
 	// Example: Using Jaeger preset (commented out to avoid interference)
 	plugin := opentelemetry.NewWithPreset(opentelemetry.PresetPrometheus, opentelemetry.Config{
 		ServiceName:    "my-genkit-app",
@@ -28,9 +25,10 @@ func prometheusExample(ctx context.Context) {
 		PrometheusPort: 8081, // Custom port for the Prometheus exporter with endpoint /metrics
 	})
 
-	if err := plugin.Init(ctx); err != nil {
-		log.Fatal(err)
-	}
+	// Initialize Genkit
+	genkit.Init(ctx,
+		genkit.WithPlugins(plugin),
+	)
 
 	log.Println("Preset examples completed")
 }

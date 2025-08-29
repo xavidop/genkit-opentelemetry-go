@@ -37,10 +37,7 @@ func main() {
     ctx := context.Background()
 
     // Initialize Genkit
-    g, err := genkit.Init(ctx)
-    if err != nil {
-        log.Fatal(err)
-    }
+    genkit.Init(ctx)
 
     // Initialize OpenTelemetry plugin with default settings
     plugin := opentelemetry.New(opentelemetry.Config{
@@ -48,7 +45,7 @@ func main() {
         ForceExport: true, // Export even in development
     })
 
-    if err := plugin.Init(ctx, g); err != nil {
+    if err := plugin.Init(ctx); err != nil {
         log.Fatal(err)
     }
 

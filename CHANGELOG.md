@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1](https://github.com/xavidop/genkit-opentelemetry-go/compare/v1.2.0...v1.2.1) (2025-08-29)
+
+### 🐛 Bug Fixes
+
+* update to genkit 0.7.0 ([41e2fb4](https://github.com/xavidop/genkit-opentelemetry-go/commit/41e2fb4a130b6d2032b89b709930b62e19db372d))
+
 ## [1.2.0](https://github.com/xavidop/genkit-opentelemetry-go/compare/v1.1.4...v1.2.0) (2025-08-29)
 
 ### 🚀 Features

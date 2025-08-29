@@ -154,17 +154,17 @@ func (ot *OpenTelemetry) Init(ctx context.Context, g *genkit.Genkit) []core.Acti
 
 	// Initialize trace exporter
 	if err := ot.setupTracing(ctx, g); err != nil {
-		panic(fmt.Sprintf("failed to setup tracing: %w", err))
+		panic(fmt.Sprintf("failed to setup tracing: %v", err))
 	}
 
 	// Initialize metric exporter
 	if err := ot.setupMetrics(ctx); err != nil {
-		panic(fmt.Sprintf("failed to setup metrics: %w", err))
+		panic(fmt.Sprintf("failed to setup metrics: %v", err))
 	}
 
 	// Initialize log handler
 	if err := ot.setupLogging(); err != nil {
-		panic(fmt.Sprintf("failed to setup logging: %w", err))
+		panic(fmt.Sprintf("failed to setup logging: %v", err))
 	}
 
 	// Set up signal handling for graceful shutdown if a server was started

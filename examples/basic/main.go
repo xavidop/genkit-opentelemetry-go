@@ -19,10 +19,7 @@ func main() {
 
 func basicExample(ctx context.Context) {
 	// Initialize Genkit
-	g, err := genkit.Init(ctx)
-	if err != nil {
-		log.Fatal(err)
-	}
+	g := genkit.Init(ctx)
 
 	// Initialize OpenTelemetry plugin with default settings
 	plugin := opentelemetry.New(opentelemetry.Config{

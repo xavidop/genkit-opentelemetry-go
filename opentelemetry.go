@@ -30,6 +30,8 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/firebase/genkit/go/core"
+	"github.com/firebase/genkit/go/core/tracing"
 	"github.com/firebase/genkit/go/genkit"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/sdk/metric"
@@ -143,7 +145,7 @@ func New(config Config) *OpenTelemetry {
 }
 
 // Init initializes the OpenTelemetry plugin.
-func (ot *OpenTelemetry) Init(ctx context.Context, g *genkit.Genkit) error {
+func (ot *OpenTelemetry) Init(ctx context.Context, g *genkit.Genkit) []core.Action {
 	// Check if we should export in dev environment
 	shouldExport := ot.config.ForceExport || os.Getenv("GENKIT_ENV") != "dev"
 	if !shouldExport {
@@ -152,23 +154,23 @@ func (ot *OpenTelemetry) Init(ctx context.Context, g *genkit.Genkit) error {
 
 	// Initialize trace exporter
 	if err := ot.setupTracing(ctx, g); err != nil {
-		return fmt.Errorf("failed to setup tracing: %w", err)
+		panic(fmt.Sprintf("failed to setup tracing: %w", err))
 	}
 
 	// Initialize metric exporter
 	if err := ot.setupMetrics(ctx); err != nil {
-		return fmt.Errorf("failed to setup metrics: %w", err)
+		panic(fmt.Sprintf("failed to setup metrics: %w", err))
 	}
 
 	// Initialize log handler
 	if err := ot.setupLogging(); err != nil {
-		return fmt.Errorf("failed to setup logging: %w", err)
+		panic(fmt.Sprintf("failed to setup logging: %w", err))
 	}
 
 	// Set up signal handling for graceful shutdown if a server was started
 	ot.setupSignalHandler()
 
-	return nil
+	return []core.Action{}
 }
 
 // setupTracing configures trace export.
@@ -186,7 +188,7 @@ func (ot *OpenTelemetry) setupTracing(ctx context.Context, g *genkit.Genkit) err
 	}
 
 	spanProcessor := trace.NewBatchSpanProcessor(spanExporter)
-	genkit.RegisterSpanProcessor(g, spanProcessor)
+	tracing.TracerProvider().RegisterSpanProcessor(spanProcessor)
 
 	return nil
 }

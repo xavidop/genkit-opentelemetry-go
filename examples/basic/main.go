@@ -19,7 +19,7 @@ func main() {
 
 func basicExample(ctx context.Context) {
 	// Initialize Genkit
-	g := genkit.Init(ctx)
+	genkit.Init(ctx)
 
 	// Initialize OpenTelemetry plugin with default settings
 	plugin := opentelemetry.New(opentelemetry.Config{
@@ -27,7 +27,7 @@ func basicExample(ctx context.Context) {
 		ForceExport: true, // Export even in development
 	})
 
-	if err := plugin.Init(ctx, g); err != nil {
+	if err := plugin.Init(ctx); err != nil {
 		log.Fatal(err)
 	}
 

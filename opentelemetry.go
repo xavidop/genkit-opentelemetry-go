@@ -32,7 +32,6 @@ import (
 
 	"github.com/firebase/genkit/go/core"
 	"github.com/firebase/genkit/go/core/tracing"
-	"github.com/firebase/genkit/go/genkit"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/sdk/metric"
 	"go.opentelemetry.io/otel/sdk/trace"
@@ -145,7 +144,7 @@ func New(config Config) *OpenTelemetry {
 }
 
 // Init initializes the OpenTelemetry plugin.
-func (ot *OpenTelemetry) Init(ctx context.Context, g *genkit.Genkit) []core.Action {
+func (ot *OpenTelemetry) Init(ctx context.Context) []core.Action {
 	// Check if we should export in dev environment
 	shouldExport := ot.config.ForceExport || os.Getenv("GENKIT_ENV") != "dev"
 	if !shouldExport {
@@ -153,7 +152,7 @@ func (ot *OpenTelemetry) Init(ctx context.Context, g *genkit.Genkit) []core.Acti
 	}
 
 	// Initialize trace exporter
-	if err := ot.setupTracing(ctx, g); err != nil {
+	if err := ot.setupTracing(ctx); err != nil {
 		panic(fmt.Sprintf("failed to setup tracing: %v", err))
 	}
 
@@ -174,7 +173,7 @@ func (ot *OpenTelemetry) Init(ctx context.Context, g *genkit.Genkit) []core.Acti
 }
 
 // setupTracing configures trace export.
-func (ot *OpenTelemetry) setupTracing(ctx context.Context, g *genkit.Genkit) error {
+func (ot *OpenTelemetry) setupTracing(ctx context.Context) error {
 	var spanExporter trace.SpanExporter
 	var err error
 

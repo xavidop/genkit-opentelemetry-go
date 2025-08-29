@@ -19,7 +19,7 @@ func main() {
 
 func otelExample(ctx context.Context) {
 	// Initialize Genkit
-	g := genkit.Init(ctx)
+	genkit.Init(ctx)
 
 	// Example: Using Jaeger preset (commented out to avoid interference)
 	plugin := opentelemetry.NewWithPreset(opentelemetry.PresetOTLP, opentelemetry.Config{
@@ -28,7 +28,7 @@ func otelExample(ctx context.Context) {
 		MetricInterval: 15 * time.Second,
 	})
 
-	if err := plugin.Init(ctx, g); err != nil {
+	if err := plugin.Init(ctx); err != nil {
 		log.Fatal(err)
 	}
 

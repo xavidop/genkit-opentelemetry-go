@@ -19,7 +19,7 @@ func main() {
 
 func jaegerExample(ctx context.Context) {
 	// Initialize Genkit
-	g := genkit.Init(ctx)
+	genkit.Init(ctx)
 
 	// Example: Using Jaeger preset (commented out to avoid interference)
 	jaegerPlugin := opentelemetry.NewWithPreset(opentelemetry.PresetJaeger, opentelemetry.Config{
@@ -27,7 +27,7 @@ func jaegerExample(ctx context.Context) {
 		ForceExport: true, // Export even in development
 	})
 
-	if err := jaegerPlugin.Init(ctx, g); err != nil {
+	if err := jaegerPlugin.Init(ctx); err != nil {
 		log.Fatal(err)
 	}
 

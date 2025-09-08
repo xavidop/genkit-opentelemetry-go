@@ -12,7 +12,7 @@ require (
 	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp v1.37.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.37.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.37.0
-	go.opentelemetry.io/otel/exporters/prometheus v0.59.1
+	go.opentelemetry.io/otel/exporters/prometheus v0.60.0
 	go.opentelemetry.io/otel/exporters/stdout/stdoutmetric v1.37.0
 	go.opentelemetry.io/otel/exporters/stdout/stdouttrace v1.37.0
 	go.opentelemetry.io/otel/sdk v1.38.0
@@ -39,7 +39,7 @@ require (
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/prometheus/client_model v0.6.2 // indirect
 	github.com/prometheus/common v0.65.0 // indirect
-	github.com/prometheus/otlptranslator v0.0.0-20250717125610-8549f4ab4f8f // indirect
+	github.com/prometheus/otlptranslator v0.0.2 // indirect
 	github.com/prometheus/procfs v0.17.0 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect

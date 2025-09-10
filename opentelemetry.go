@@ -30,7 +30,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/firebase/genkit/go/core"
+	"github.com/firebase/genkit/go/core/api"
 	"github.com/firebase/genkit/go/core/tracing"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/sdk/metric"
@@ -144,7 +144,7 @@ func New(config Config) *OpenTelemetry {
 }
 
 // Init initializes the OpenTelemetry plugin.
-func (ot *OpenTelemetry) Init(ctx context.Context) []core.Action {
+func (ot *OpenTelemetry) Init(ctx context.Context) []api.Action {
 	// Check if we should export in dev environment
 	shouldExport := ot.config.ForceExport || os.Getenv("GENKIT_ENV") != "dev"
 	if !shouldExport {
@@ -169,7 +169,7 @@ func (ot *OpenTelemetry) Init(ctx context.Context) []core.Action {
 	// Set up signal handling for graceful shutdown if a server was started
 	ot.setupSignalHandler()
 
-	return []core.Action{}
+	return []api.Action{}
 }
 
 // setupTracing configures trace export.

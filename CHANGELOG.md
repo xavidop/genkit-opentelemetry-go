@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0](https://github.com/xavidop/genkit-opentelemetry-go/compare/v1.8.1...v1.9.0) (2025-10-20)
+
+### 🚀 Features
+
+* Merge pull request [#29](https://github.com/xavidop/genkit-opentelemetry-go/issues/29) from xavidop/dependabot/go_modules/github.com/firebase/genkit/go-1.1.0 ([cdbef3c](https://github.com/xavidop/genkit-opentelemetry-go/commit/cdbef3ce73ee9aa4695011a8e43fa2dfc1308a7b))
+
 ## [1.8.1](https://github.com/xavidop/genkit-opentelemetry-go/compare/v1.8.0...v1.8.1) (2025-10-20)
 
 ### ⚙️ Continuous Integration

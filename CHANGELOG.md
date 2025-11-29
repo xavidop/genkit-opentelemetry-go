@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.10.0](https://github.com/xavidop/genkit-opentelemetry-go/compare/v1.9.1...v1.10.0) (2025-11-29)
+
+### 🚀 Features
+
+* bump versions ([dc7054d](https://github.com/xavidop/genkit-opentelemetry-go/commit/dc7054df234a28e93754db25fbe6959275383dc1))
+
+### ⚙️ Continuous Integration
+
+* **deps:** bump actions/checkout from 5 to 6 ([3d2f5a9](https://github.com/xavidop/genkit-opentelemetry-go/commit/3d2f5a90a636a864d3c89dc377b589452256fded))
+
 ## [1.9.1](https://github.com/xavidop/genkit-opentelemetry-go/compare/v1.9.0...v1.9.1) (2025-11-10)
 
 ### ⚙️ Continuous Integration

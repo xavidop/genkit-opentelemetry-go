@@ -1,7 +1,7 @@
 {
   "name": "genkit-opentelemetry-go",
   "version": "0.0.0-development",
-  "description": "OpenTelemetry Plugin for Firebase Genkit Go",
+  "description": "OpenTelemetry Plugin for Genkit Go",
   "repository": {
     "type": "git",
     "url": "https://github.com/xavidop/genkit-opentelemetry-go.git"
@@ -13,8 +13,7 @@
     "opentelemetry",
     "golang",
     "ai",
-    "llm",
-    "firebase"
+    "llm"
   ],
   "private": true,
   "devDependencies": {

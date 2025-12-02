@@ -1,6 +1,6 @@
 # Genkit OpenTelemetry Plugin for Go
 
-A comprehensive OpenTelemetry plugin for [Firebase Genkit Go](https://genkit.dev/go/docs/) that provides out-of-the-box trace spans, metrics collectors, and logs with the flexibility to bring your own exporters.
+A comprehensive OpenTelemetry plugin for [Genkit Go](https://genkit.dev/go/docs/) that provides out-of-the-box trace spans, metrics collectors, and logs with the flexibility to bring your own exporters.
 
 ## Features
 
@@ -382,6 +382,6 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENS
 
 ## Related Projects
 
-- [Firebase Genkit](https://genkit.dev/) - AI application framework
+- [Genkit](https://genkit.dev/) - AI application framework
 - [OpenTelemetry Go](https://opentelemetry.io/docs/languages/go/) - Observability framework
 - [Genkit Google Cloud Plugin](https://genkit.dev/go/docs/plugins/google-cloud/) - Official Google Cloud telemetry plugin

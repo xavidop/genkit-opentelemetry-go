@@ -96,7 +96,7 @@ release:
   header: |
     ## OpenTelemetry Plugin for Genkit Go {{.Version}}
 
-    This release includes improvements to the OpenTelemetry integration for Firebase Genkit Go.
+    This release includes improvements to the OpenTelemetry integration for Genkit Go.
     
     **🤖 This release was automatically generated using semantic-release**
     
